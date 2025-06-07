@@ -3,13 +3,14 @@
 </script>
 
 <template>
-  <div class="background-container">
+  <!-- 使用三列模式的組合布局 -->
+  <div class="app-layout">
     <!-- 左側紫色區域 -->
     <div class="left-section">
       <img src="@/assets/sign-up-left.svg" alt="Left Image" />
     </div>
     
-    <!-- 中間過渡曲線區域，直接嵌入 SVG -->
+    <!-- 中間過渡曲線區域 SVG -->
     <div class="curve-section">
       <svg viewBox="0 0 218 866" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
         <path d="M64.6479 221.458C58.6154 92.77 80.8098 48.4784 98.3871 -4.30064e-06L0 0L3.78541e-05 866L163.021 866C168.288 844.699 175.661 772.789 163.021 655.56C147.222 509.023 72.1885 382.318 64.6479 221.458Z" fill="#9491C0"/>
@@ -32,22 +33,29 @@
   box-sizing: border-box;
 }
 
+/* 特意設置全局樣式，確保整個頁面的背景色與高度 */
 html, body {
+  margin: 0;
+  padding: 0;
   height: 100%;
-  width: 100%;
+  width: 100vw;
   overflow: hidden;
+  background-color: #F6F6F6; /* 確保整個頁面背景為淺灰色，避免黑色區塊 */
 }
 
-/* 確保 Vue 應用佔滿整個視窗 */
+/* 覆蓋 main.css 的設定，使用更高的權重性 */
 #app {
+  max-width: 100vw !important; /* 確保應用佔滿整個視窗寬度 */
+  padding: 0 !important; /* 移除所有填充 */
+  margin: 0 !important; /* 移除自動居中 */
   height: 100vh;
   width: 100vw;
 }
 
-/* 背景容器 - 使用 grid 而非 flex 來更精確控制區域 */
-.background-container {
-  display: grid;
-  grid-template-columns: 45% 10% 45%; /* 區分為左、中、右三個區域 */
+/* 主要應用佈局 */
+.app-layout {
+  display: flex;
+  flex-direction: row;
   height: 100vh;
   width: 100vw;
   overflow: hidden;
@@ -55,24 +63,27 @@ html, body {
 
 /* 左側紫色區域 */
 .left-section {
-  width: 100%; /* 使用全寬 */
+  flex: 45; /* 使用flex比例確保左側區域約作45% */
   height: 100%;
   background-color: #9491C0; /* 紫色背景 */
-  grid-column: 1;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative; /* 確保紫色背景完全顯示 */
+  z-index: 1;
 }
 
 /* 中間曲線區域 - 作為獨立區塊 */
 .curve-section {
-  width: 100%;
+  width: 218px; /* 固定寬度218px，符合SVG的寬度 */
+  flex: none; /* 移除彈性比例，確保固定寬度 */
   height: 100%;
-  grid-column: 2;
   overflow: hidden;
   display: flex;
   align-items: stretch;
   background-color: #F6F6F6; /* 設置中間區域背景色 */
+  position: relative;
+  z-index: 1;
 }
 
 /* 確保 SVG 完全填滿容器 */
@@ -84,12 +95,13 @@ html, body {
 
 /* 右側白色區域 */
 .right-section {
-  width: 100%;
+  flex: 45; /* 使用flex比例確保右側區域約作45% */
   height: 100%;
   background-color: #F6F6F6;
-  grid-column: 3;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  z-index: 1;
 }
 </style>
