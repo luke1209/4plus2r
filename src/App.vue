@@ -63,27 +63,30 @@ html, body {
 
 /* 左側紫色區域 */
 .left-section {
-  flex: 45; /* 使用flex比例確保左側區域約作45% */
-  height: 100%;
-  background-color: #9491C0; /* 紫色背景 */
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative; /* 確保紫色背景完全顯示 */
-  z-index: 1;
+  flex: 45; /* 使用flex比例確保左側區域約作45% */
+
+  height: 100%;
+  
+  background-color: #9491C0; /* 紫色背景 */
 }
 
 /* 中間曲線區域 - 作為獨立區塊 */
 .curve-section {
-  width: 218px; /* 固定寬度218px，符合SVG的寬度 */
-  flex: none; /* 移除彈性比例，確保固定寬度 */
-  height: 100%;
-  overflow: hidden;
+  /* flex 排版相關 */
   display: flex;
   align-items: stretch;
+  flex: none; /* 移除彈性比例，確保固定寬度 */
+
+  /* 尺寸相關 */
+  width: 218px; /* 固定寬度218px，符合SVG的寬度 */
+  height: 100%;
+
+  /* 其他 */
+  overflow: hidden;
   background-color: #F6F6F6; /* 設置中間區域背景色 */
-  position: relative;
-  z-index: 1;
 }
 
 /* 確保 SVG 完全填滿容器 */
@@ -95,13 +98,14 @@ html, body {
 
 /* 右側白色區域 */
 .right-section {
-  flex: 45; /* 使用flex比例確保右側區域約作45% */
-  height: 100%;
-  background-color: #F6F6F6;
+  /* flex 排版相關 */
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
-  z-index: 1;
+  flex: 45; /* 使用flex比例確保右側區域約作45% */
+
+  /* 尺寸、背景相關 */
+  height: 100%;
+  background-color: #F6F6F6;
 }
 </style>
