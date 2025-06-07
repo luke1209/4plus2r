@@ -5,7 +5,9 @@
 <template>
   <div class="background-container">
     <!-- 左側紫色區域 -->
-    <div class="left-section"></div>
+    <div class="left-section">
+      <img src="@/assets/sign-up-left.svg" alt="Left Image" />
+    </div>
     
     <!-- 中間過渡曲線區域，直接嵌入 SVG -->
     <div class="curve-section">
@@ -16,7 +18,9 @@
     </div>
     
     <!-- 右側白色區域 -->
-    <div class="right-section"></div>
+    <div class="right-section">
+      <img src="@/assets/sign-up-right.svg" alt="Right Image" />
+    </div>
   </div>
 </template>
 
@@ -55,6 +59,9 @@ html, body {
   height: 100%;
   background-color: #9491C0; /* 紫色背景 */
   grid-column: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* 中間曲線區域 - 作為獨立區塊 */
@@ -81,5 +88,8 @@ html, body {
   height: 100%;
   background-color: #F6F6F6;
   grid-column: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
