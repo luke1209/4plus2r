@@ -50,7 +50,7 @@ defineEmits(['login']);
   /* 移動端樣式 */
   @media (max-width: 768px) {
     flex: none;
-    padding: 80px 0 40px; /* 增加頂部內邊距，為 logo 留出空間 */
+    padding: 150px 0 80px; /* 增加頂部內邊距，為 logo 留出空間 */
     height: auto;
     min-height: 40vh;
     justify-content: flex-start;
