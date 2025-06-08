@@ -22,16 +22,28 @@ onMounted(() => {
 // 從 Strapi 獲取內容
 onMounted(async () => {
   try {
+    console.log('正在獲取頁面內容...');
+    console.log('裝置類型:', navigator.userAgent);
     const response = await api.getSignupPageContent();
+    console.log('API 回應完整內容:', response);
+    
     if (response.data && response.data.data && response.data.data.length > 0) {
       // API 返回的是一個數組，取第一筆資料
       const firstItem = response.data.data[0];
+      console.log('獲取到的內容項目:', firstItem);
+      
       // 更新頁面內容
       pageContent.value = {
         leftTitle: firstItem.leftTitle || '歡迎回來~',
         leftDescription: firstItem.leftDescription || '',
         rightTitle: firstItem.rightTitle || '是否瞭解？'
       };
+      console.log('頁面內容更新為:', pageContent.value);
+      setTimeout(() => {
+        console.log('更新後的實際頁面內容值:', pageContent.value);
+      }, 1000);
+    } else {
+      console.warn('沒有獲取到有效的頁面內容', response);
     }
   } catch (error) {
     console.error('無法載入頁面內容:', error);

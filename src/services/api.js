@@ -15,7 +15,14 @@ const apiClient = axios.create({
 export default {
   // 獲取 SignUp 頁面內容
   getSignupPageContent() {
-    return apiClient.get('/sign-ups');
+    console.log('發送 API 請求...');
+    return apiClient.get('/sign-ups').then(response => {
+      console.log('收到 API 回應:', response);
+      return response;
+    }).catch(error => {
+      console.error('API 請求錯誤:', error);
+      throw error;
+    });
   },
   
   // 提交 BasicInfo 表單資料
