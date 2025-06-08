@@ -3,7 +3,7 @@
  * 負責連接 Model 和 View，提供數據轉換和業務邏輯
  */
 import { ref, reactive, onMounted, computed } from 'vue';
-import SignUpModel from '@/models/SignUpModel';
+import SignUpModel from '@/api/models/SignUpModel';
 
 export default function useSignUpViewModel() {
   // === 狀態與數據 (State) ===
