@@ -7,8 +7,7 @@ import BasicInfoForm from '@/components/BasicInfoForm.vue';
     <!-- 頂部導航欄 -->
     <header class="header">
       <div class="logo-container">
-        <div class="logo">4+2</div>
-        <div class="logo-text">代譚飲食法</div>
+        <img src="@/assets/4+2logo-wiet-text-vertical.svg" alt="4+2代謝飲食法" class="logo" />
       </div>
     </header>
     

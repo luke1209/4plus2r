@@ -7,13 +7,20 @@
   <div class="app-layout">
     <!-- 左側紫色區域 -->
     <div class="left-section">
-      <div class="welcome-container">
-        <h1 class="welcome-title">歡迎回來～</h1>
-        <div class="divider"></div>
-        <p class="welcome-text">最新消息內容或公告大綱等，最新消息內容或公告大綱等，最新消息內容或公告大綱等，最新消息內容或公告大綱等，最新消息內容或公告大綱等，最新消息內容或公告大綱等，</p>
-        <div class="login-button-container">
-          <div class="login-button">
-            <span>會員登入</span>
+      <div class="mobile-content-wrapper">
+        <!-- 左上角 logo，移動端時轉為上方中央 -->
+        <div class="logo-container">
+          <img src="@/assets/4+2logo-wiet-text-vertical.svg" alt="4+2代謝飲食法" class="logo" />
+        </div>
+        
+        <div class="welcome-container">
+          <h1 class="welcome-title">歡迎回來～</h1>
+          <div class="divider"></div>
+          <p class="welcome-text">最新消息內容或公告大綱等，最新消息內容或公告大綱等，最新消息內容或公告大綱等，最新消息內容或公告大綱等，最新消息內容或公告大綱等，最新消息內容或公告大綱等，</p>
+          <div class="login-button-container">
+            <div class="login-button">
+              <span>會員登入</span>
+            </div>
           </div>
         </div>
       </div>
@@ -47,17 +54,25 @@
 </template>
 
 <style scoped>
-/* 主要應用佈局 */
+/* 基本布局容器 */
 .app-layout {
   display: flex;
-  flex-direction: row;
   height: 100vh;
   width: 100vw;
   overflow: hidden;
+  
+  /* 移動設備切換為垂直布局 */
+  @media (max-width: 768px) {
+    flex-direction: column;
+    overflow-y: auto;
+    height: auto;
+    min-height: 100vh;
+  }
 }
 
 /* 左側紫色區域 */
 .left-section {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -65,6 +80,55 @@
   height: 100%;
   background-color: #9491C0; /* 紫色背景 */
   padding: 32px;
+  
+  /* 移動端樣式 */
+  @media (max-width: 768px) {
+    padding: 24px;
+    flex: none;
+    height: auto;
+    min-height: 60vh;
+  }
+}
+
+/* 左側內容包裝器 - 同時用於桌面和移動端 */
+.mobile-content-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative; /* 確保子元素可以使用絕對定位 */
+  
+  @media (max-width: 768px) {
+    padding-top: 0px;
+  }
+}
+
+/* 左上角 logo 容器 */
+.logo-container {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 5;
+  
+  /* 移動端樣式 */
+  @media (max-width: 768px) {
+    position: static;
+    margin-bottom: 36px;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.logo {
+  width: 70px;
+  height: auto;
+  
+  /* 移動端樣式 */
+  @media (max-width: 768px) {
+    width: 60px;
+  }
 }
 
 .welcome-container {
@@ -74,6 +138,22 @@
   align-items: center;
   gap: 24px;
   width: 100%;
+  
+  /* 桌面版下的位置調整，將內容垂直中心對齊 */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  
+  /* 移動端樣式 - 重置定位與間距 */
+  @media (max-width: 768px) {
+    position: static;
+    transform: none;
+    max-width: 100%;
+    gap: 16px;
+    padding: 0;
+    margin-top: 10px;
+  }
 }
 
 .welcome-title {
@@ -83,12 +163,22 @@
   text-align: center;
   line-height: 1.2;
   width: 100%;
+  
+  /* 移動端樣式 */
+  @media (max-width: 768px) {
+    font-size: 30px;
+  }
 }
 
 .divider {
   width: 80px;
   height: 2px;
   background-color: #E9E9E9;
+  
+  /* 移動端樣式 */
+  @media (max-width: 768px) {
+    margin: 0;
+  }
 }
 
 .welcome-text {
@@ -97,11 +187,22 @@
   text-align: center;
   line-height: 1.8;
   width: 100%;
+  
+  /* 移動端樣式 */
+  @media (max-width: 768px) {
+    font-size: 13px;
+    padding: 0 20px;
+  }
 }
 
 .login-button-container {
   width: 100%;
   margin-top: 12px;
+  
+  /* 移動端樣式 */
+  @media (max-width: 768px) {
+    margin-top: 10px;
+  }
 }
 
 .login-button {
@@ -140,6 +241,11 @@
   /* 其他 */
   overflow: hidden;
   background-color: #F6F6F6; /* 設置中間區域背景色 */
+  
+  /* 移動端樣式 - 隐藏中間曲線 */
+  @media (max-width: 768px) {
+    display: none;
+  }
 }
 
 /* 確保 SVG 完全填滿容器 */
@@ -160,6 +266,13 @@
   /* 尺寸、背景相關 */
   height: 100%;
   background-color: #F6F6F6;
+  
+  /* 移動端樣式 */
+  @media (max-width: 768px) {
+    flex: none;
+    padding: 40px 0;
+    height: auto;
+  }
 }
 
 .understand-content {
@@ -169,6 +282,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  
+  /* 移動端樣式 */
+  @media (max-width: 768px) {
+    max-width: 100%;
+    padding: 0 24px;
+  }
 }
 
 .title {
@@ -176,12 +295,23 @@
   font-weight: 600;
   margin-bottom: 30px;
   color: #9491C0;
+  
+  /* 移動端樣式 */
+  @media (max-width: 768px) {
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
 }
 
 .info-icon-container {
   margin: 0 0 40px;
   display: flex;
   justify-content: center;
+  
+  /* 移動端樣式 */
+  @media (max-width: 768px) {
+    margin: 0 0 30px;
+  }
 }
 
 .buttons-container {
@@ -189,6 +319,12 @@
   gap: 8px;
   width: 100%;
   max-width: 329px;
+  
+  /* 移動端樣式 */
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 12px;
+  }
 }
 
 .understand-btn {
