@@ -1,5 +1,15 @@
 <script setup>
 // 註冊註冊頁面所需組件
+import { onMounted } from 'vue';
+
+// 移動端滾動優化
+onMounted(() => {
+  // 強制啟用移動端滾動
+  if (window.innerWidth <= 768) {
+    document.body.style.overflow = 'auto';
+    document.body.style.webkitOverflowScrolling = 'touch';
+  }
+});
 </script>
 
 <template>
@@ -64,12 +74,13 @@
   /* 移動設備切換為垂直布局 */
   @media (max-width: 768px) {
     flex-direction: column;
-    overflow-y: auto;
-    overflow-x: hidden;
     height: auto;
     min-height: 100vh;
+    overflow: visible;
+    overflow-y: auto;
     -webkit-overflow-scrolling: touch; /* 增加滑動效果 */
     touch-action: pan-y; /* 啟用垂直滑動 */
+    position: relative;
   }
 }
 
@@ -89,7 +100,9 @@
     padding: 24px;
     flex: none;
     height: auto;
-    min-height: 60vh;
+    min-height: 100vh; /* 確保足夠高度觸發滾動 */
+    display: flex;
+    flex-direction: column;
   }
 }
 
@@ -273,8 +286,9 @@
   /* 移動端樣式 */
   @media (max-width: 768px) {
     flex: none;
-    padding: 40px 0;
+    padding: 40px 0 60px 0; /* 增加底部間距 */
     height: auto;
+    min-height: 60vh; /* 確保有足夠高度 */
   }
 }
 
