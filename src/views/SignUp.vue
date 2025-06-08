@@ -1,6 +1,14 @@
 <script setup>
 // 註冊註冊頁面所需組件
-import { onMounted } from 'vue';
+import { ref, onMounted } from 'vue';
+import api from '@/services/api';
+
+// 頁面內容數據
+const pageContent = ref({
+  leftTitle: '歡迎回來~', // 預設值
+  leftDescription: '最新消息內容或公告大綱等，最新消息內容或公告大綱等，最新消息內容或公告大綱等，最新消息內容或公告大綱等，最新消息內容或公告大綱等，最新消息內容或公告大綱等，',
+  rightTitle: '是否瞭解？'
+});
 
 // 移動端滾動優化
 onMounted(() => {
@@ -8,6 +16,25 @@ onMounted(() => {
   if (window.innerWidth <= 768) {
     document.body.style.overflow = 'auto';
     document.body.style.webkitOverflowScrolling = 'touch';
+  }
+});
+
+// 從 Strapi 獲取內容
+onMounted(async () => {
+  try {
+    const response = await api.getSignupPageContent();
+    if (response.data && response.data.data && response.data.data.length > 0) {
+      // API 返回的是一個數組，取第一筆資料
+      const firstItem = response.data.data[0];
+      // 更新頁面內容
+      pageContent.value = {
+        leftTitle: firstItem.leftTitle || '歡迎回來~',
+        leftDescription: firstItem.leftDescription || '',
+        rightTitle: firstItem.rightTitle || '是否瞭解？'
+      };
+    }
+  } catch (error) {
+    console.error('無法載入頁面內容:', error);
   }
 });
 </script>
@@ -24,9 +51,9 @@ onMounted(() => {
         </div>
         
         <div class="welcome-container">
-          <h1 class="welcome-title">歡迎回來～</h1>
+          <h1 class="welcome-title">{{ pageContent.leftTitle }}</h1>
           <div class="divider"></div>
-          <p class="welcome-text">最新消息內容或公告大綱等，最新消息內容或公告大綱等，最新消息內容或公告大綱等，最新消息內容或公告大綱等，最新消息內容或公告大綱等，最新消息內容或公告大綱等，</p>
+          <p class="welcome-text">{{ pageContent.leftDescription }}</p>
           <div class="login-button-container">
             <div class="login-button">
               <span>會員登入</span>
@@ -47,7 +74,7 @@ onMounted(() => {
     <!-- 右側白色區域 -->
     <div class="right-section">
       <div class="understand-content">
-        <h1 class="title">是否瞭解？</h1>
+        <h1 class="title">{{ pageContent.rightTitle }}</h1>
         
         <div class="info-icon-container">
           <!-- 4+2 食法介紹圖示 -->
