@@ -65,8 +65,11 @@
   @media (max-width: 768px) {
     flex-direction: column;
     overflow-y: auto;
+    overflow-x: hidden;
     height: auto;
     min-height: 100vh;
+    -webkit-overflow-scrolling: touch; /* 增加滑動效果 */
+    touch-action: pan-y; /* 啟用垂直滑動 */
   }
 }
 
